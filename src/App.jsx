@@ -1,15 +1,30 @@
 import "./App.css";
+import { User } from './User.jsx';
 
 function App() {
-  const age = 17;
-  const isGreen = true;
+  const users = [
+    { name: "Liidia", age: 25 },
+    { name: "Jake", age: 26 },
+    { name: "Jessica", age: 24 },
+  ]
+
+  const planets = [
+    { name: "Mars", isGasPlanet: false },
+    { name: "Earth", isGasPlanet: false },
+    { name: "Jupiter", isGasPlanet: true },
+    { name: "Venus", isGasPlanet: false },
+    { name: "Neptune", isGasPlanet: true },
+    { name: "Uranus", isGasPlanet: true },
+  ];
 
   return (
     <div className="App">
-      {age >= 18 ? <h1>OVER AGE</h1> : <h1>UNDER AGE</h1>}
-      <h2 style={{ color: isGreen ? "green" : "red" }}>THIS HAS COLOR</h2>
+      { users.map((user, key) => {
+        return <User key={key} name={user.name} age={user.age} />
+      })}
 
-      { isGreen && <button>THIS IS A BUTTON</button> }
+      { planets.map((planet, key) => !planet.isGasPlanet && <h2> {planet.name } </h2>
+      )}
     </div>
   );
 }
