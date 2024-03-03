@@ -1,54 +1,57 @@
 import "./App.css";
 import { useState } from "react";
+import { Task} from "./Task.jsx";
 
 function App() {
-  const [age, setAge] = useState(0);
-  const increaseAge = () => {
-    setAge(age +1);
-  };
-
-  const [inputValue, setInputValue] = useState("");
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const [todoList, setTodoList] = useState([]);
+  const [newTask, setNewTask] = useState("");
+  
+  const handleChange = (event) => {
+    setNewTask(event.target.value);
+  }
+  
+  const addTask = () => {
+    const task = {
+      id: todoList.length === 0 ? 1 : todoList[todoList.length-1].id + 1,
+      taskName: newTask,
+      completed: false
+    }
+    setTodoList([...todoList, task]);
   }
 
-  const [showText, setShowText] = useState(true);
+  const deleteTask = (id) => {
+    setTodoList(todoList.filter((task) => task.id !== id));
+  };
 
-  const [textColor, setTextColor] = useState("black");
-
-  const [count, setCount] = useState(0);
+  const completeTask = (id) => {
+    setTodoList(
+      todoList.map((task) => {
+        if(task.id === id){
+          return {...task, completed: true};
+        } else {
+          return task;
+        }
+      })
+    )
+  }
 
   return (
     <div className="App">
-      {age} 
-      <button onClick={increaseAge}>Increase age</button>
-      <br />
-      <br />
-      <input type="text" onChange={handleInputChange} />
-      <br />
-      {inputValue}
-      <br />
-      <br />
-      <button onClick={() => {
-        setShowText(!showText)
-      }}>Show / Hide</button>
-      {showText && <h2>HI, MY NAME IS LIIDIA</h2>}
-      <br />
-      <button onClick={() => {
-        setTextColor (textColor === "black" ? "red" : "black");
-      }}>Change color</button>
-      <h2 style={{ color: textColor }}>HI, MY NAME IS LIIDIA</h2>
-      <br />
-      <button onClick={() => {
-        setCount(count + 1);
-      }}>Increase</button>
-      <button onClick={() => {
-        setCount(count - 1);
-      }}>Decrease</button>
-      <button onClick={() => {
-        setCount(0);
-      }}>Set to Zero</button>
-      {count}
+      <div className="addTask">
+        <input onChange={handleChange}></input>
+        <button onClick={addTask}>Add Task</button>
+      </div>
+      <div className="list">
+        {todoList.map((task) => {
+          return <Task 
+                    taskName={task.taskName} 
+                    id={task.id} 
+                    deleteTask={deleteTask}
+                    completed={task.completed}
+                    completeTask={completeTask}
+                    />;
+        })}
+      </div>
     </div>
   );
 }
