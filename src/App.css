@@ -8,6 +8,16 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 4px;
 }
+
+.catFact {
+  margin: 4px 32px;
+  text-align: center;
+}
+
+.nameAge p {
+  margin: 2px 32px;
+}
+
 
