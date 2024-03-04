@@ -1,6 +1,16 @@
 # React + Vite
 
+## Access the app:
+
+[HERE - Learnreact APP](https://liidiailves.github.io/learnreact/)
+
+### For developing:
+
 npm run dev
+
+### For deployment:
+
+npm run deploy
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
