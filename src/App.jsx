@@ -1,14 +1,17 @@
-import CatFact from './CatFact';
-import NameAge from './NameAge';
-import Excuse from './Excuse';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import WebApis from "./pages/WebApis";
 
 function App() {
   return (
     <div className="App">
-      <CatFact />
-      <NameAge />
-      <Excuse />
+      <Router>
+        <Routes>
+          <Route path="/learnreact" element={<Home />} />
+          <Route path="/learnreact/webapis" element={<WebApis />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
