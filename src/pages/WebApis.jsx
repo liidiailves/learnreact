@@ -4,10 +4,10 @@ import Excuse from "../components/Excuse";
 
 export default function WebApis() {
   return (
-    <>
+    <div>
       <CatFact />
       <NameAge />
       <Excuse />
-    </>
+    </div>
   );
 }
