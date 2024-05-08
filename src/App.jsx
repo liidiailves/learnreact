@@ -9,8 +9,8 @@ import {
 import Home from "./pages/Home";
 import WebApis from "./pages/WebApis";
 import Menu from "./pages/Menu";
-import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
+import Data, { dataLoader } from "./pages/Data";
 
 function App() {
   const router = createBrowserRouter(
@@ -19,7 +19,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/learnreact/webapis" element={<WebApis />} />
         <Route path="/learnreact/menu" element={<Menu />} />
-        <Route path="/learnreact/contact" element={<Contact />} />
+        <Route path="/learnreact/data" element={<Data />} loader={dataLoader} />
         <Route path="/learnreact/*" element={<h1>Page not found!</h1>} />
       </Route>
     )

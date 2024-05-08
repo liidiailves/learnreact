@@ -9,8 +9,8 @@ export default function Navbar() {
       <Link to="/learnreact/menu" className="link">
         Menu
       </Link>
-      <Link to="/learnreact/Contact" className="link">
-        Contact
+      <Link to="/learnreact/data" className="link">
+        Data
       </Link>
       <Link to="/learnreact/webapis" className="link">
         WebApis
