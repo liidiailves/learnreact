@@ -6,8 +6,8 @@ export default function Navbar() {
       <Link to="/learnreact" className="link">
         Home
       </Link>
-      <Link to="/learnreact/menu" className="link">
-        Menu
+      <Link to="/learnreact/profile" className="link">
+        Profile
       </Link>
       <Link to="/learnreact/data" className="link">
         Data
