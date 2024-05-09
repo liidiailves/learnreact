@@ -11,7 +11,9 @@ import WebApis from "./pages/WebApis";
 import Navbar from "./components/Navbar";
 import Data, { dataLoader } from "./pages/Data";
 import Profile from "./pages/Profile";
-import { useState } from "react";
+import { useState, createContext } from "react";
+
+export const AppContext = createContext();
 
 function App() {
   const [username, setUsername] = useState("Liidia");
@@ -19,12 +21,9 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/learnreact" element={<Root />}>
-        <Route index element={<Home username={username} />} />
+        <Route index element={<Home />} />
         <Route path="/learnreact/webapis" element={<WebApis />} />
-        <Route
-          path="/learnreact/profile"
-          element={<Profile username={username} setUsername={setUsername} />}
-        />
+        <Route path="/learnreact/profile" element={<Profile />} />
         <Route path="/learnreact/data" element={<Data />} loader={dataLoader} />
         <Route path="/learnreact/*" element={<h1>Page not found!</h1>} />
       </Route>
@@ -33,7 +32,9 @@ function App() {
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <AppContext.Provider value={{ username, setUsername }}>
+        <RouterProvider router={router} />
+      </AppContext.Provider>
     </div>
   );
 }
