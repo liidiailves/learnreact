@@ -12,11 +12,19 @@ import Navbar from "./components/Navbar";
 import Data, { dataLoader } from "./pages/Data";
 import Profile from "./pages/Profile";
 import { useState, createContext } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const AppContext = createContext();
 
 function App() {
   const [username, setUsername] = useState("Liidia");
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: true,
+      },
+    },
+  });
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -32,9 +40,11 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ username, setUsername }}>
-        <RouterProvider router={router} />
-      </AppContext.Provider>
+      <QueryClientProvider client={client}>
+        <AppContext.Provider value={{ username, setUsername }}>
+          <RouterProvider router={router} />
+        </AppContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 }
