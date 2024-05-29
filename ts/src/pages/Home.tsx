@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Person, { Country } from "../components/Person";
 
 export const Home = () => {
